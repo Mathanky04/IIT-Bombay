@@ -1,0 +1,65 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<style>
+		img{
+			position:relative;
+			top:70px;
+			left:50px;
+		}
+	</style>
+</head>
+
+<body id="b">
+ <img src="switch.jpeg" type="image/jpeg" id="s">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ <script>
+ $("#s").contextmenu(function(e){
+		e.preventDefault();
+		if($("#configure"))
+		{
+			$("#configure").remove();
+		}
+		if($("#p"))
+		{
+			$("#p").remove();
+		}
+		var x=e.pageX;
+		var y=e.pageY;
+		$("body").append("<div class='container' id='configure'></div>");
+		$("#configure").css({"position":"absolute","top":y,"left":x,"width":"200px"});
+		$("#configure").html('<div class="list-group"><a href="#" class="list-group-item active" id="option1">Configure</a><a href="#" class="list-group-item list-group-item-action" id="option2">Rename</a><a href="#" class="list-group-item list-group-item-action" id="option3">ABC</a><a href="#" class="list-group-item list-group-item-action" id="option4">XYZ</a></div>');
+		$("#option1").click(function(e){
+		if($("#p"))
+		{
+			$("#p").remove();
+		}
+		var x1=e.pageX+250;
+		var y1=e.pageY-30;
+		$("body").append('<div class="panel panel-primary" id="p"><div class="panel-heading" id="phead">Configure</div><div class="panel-body" id="panelForm"></div></div>');
+		$("#p").css({"position":"absolute","top":y1,"left":x1,"float":"right", "width":"400px"});
+		$("#panelForm").html('<div class="form-group" id="f1"><label for="sel1" id="ls">Interface</label><select class="form-control" id="sel1" width="200px"><option id="o1">Serial 0/1</option><option id="o2">Serial 0/2</option><option id="o3">Serial 0/3</option><option id="o4">Serial 0/4</option></select></div><div class="form-group" id="f2"><label for="ip" id="li">IP Address</label><input type="text" class="form-control" id="ip" placeholder="X.X.X.X"></div><div class="form-group" id="f3"><label for="dns" id="ld">Preferred DNS </label><input type="text" class="form-control" id="dns" placeholder="X.X.X.X"></div><button type="button" class="btn btn-primary btn-lg" id="apply">Apply</button> <button type="button" class="btn btn-default btn-lg" id="cancel">Cancel</button>');
+		$("#cancel").css({"position":"relative","left":"195px"});
+		});
+	});
+
+$("body").click(function(e){
+	if(e.target.id!="option1" && e.target.id!="option2" && e.target.id!="option3" && e.target.id!="option4" && e.target.id!="p" && e.target.id!="sel1" && e.target.id!="o1" && e.target.id!="o2" && e.target.id!="o3" && e.target.id!="o4" && e.target.id!="ip" && e.target.id!="dns" && e.target.id!="panelForm" && e.target.id!="phead" && e.target.id!="ls" && e.target.id!="li" && e.target.id!="ld" && e.target.id!="f1" && e.target.id!="f2" && e.target.id!="f3")
+	{
+		$("#configure").hide();
+		$("#p").hide();
+	}
+});	
+
+$("body").contextmenu(function(e){
+	if(e.target.id!="option1" && e.target.id!="option2" && e.target.id!="option3" && e.target.id!="option4" && e.target.id!="p" && e.target.id!="sel1" && e.target.id!="o1" && e.target.id!="o2" && e.target.id!="o3" && e.target.id!="o4" && e.target.id!="ip" && e.target.id!="dns" && e.target.id!="panelForm" && e.target.id!="phead" && e.target.id!="ls" && e.target.id!="li" && e.target.id!="ld" && e.target.id!="s")
+	{
+		$("#configure").hide();
+		$("#p").hide();
+	}
+});	
+ </script>
+</body>
+
+</html>
